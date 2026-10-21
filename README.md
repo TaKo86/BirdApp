@@ -5,6 +5,10 @@
 Requires [uv](https://docs.astral.sh/uv/). Python 3.11 is installed automatically
 
 ```bash
+pip install uv
+```
+
+```bash
 uv sync
 ```
 
