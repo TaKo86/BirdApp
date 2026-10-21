@@ -3,6 +3,7 @@ name = "205b-repo"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
+    "av>=18.1.0",
     "ipykernel>=7.4.0",
     "ipython>=9.17.1",
     "librosa>=0.11.0",
@@ -11,5 +12,6 @@ dependencies = [
     "pandas>=3.0.6",
     "requests>=2.34.2",
     "soundfile>=0.14.0",
+    "streamlit>=1.66.1",
     "tqdm>=4.70.1",
 ]
