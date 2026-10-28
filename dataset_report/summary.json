@@ -1,0 +1,203 @@
+{
+  "dataset": "ollypowell/new-zealand-bird-sound",
+  "dataset_dir": "C:\\Users\\Warner Nash\\.cache\\kagglehub\\datasets\\ollypowell\\new-zealand-bird-sound\\versions\\1",
+  "audio_files": 271365,
+  "readable_audio_files": 271365,
+  "unreadable_audio_files": 0,
+  "audio_extensions": {
+    ".flac": 271365
+  },
+  "collections": {
+    "DOC_002_DuncanBayParinga": 145441,
+    "DOC_001_Tier1": 123086,
+    "DOC_003_XenoCanto": 2838
+  },
+  "unique_source_recordings": 57874,
+  "unique_source_recordings_by_collection": {
+    "DOC_001_Tier1": 31691,
+    "DOC_002_DuncanBayParinga": 24848,
+    "DOC_003_XenoCanto": 1335
+  },
+  "class_count": 133,
+  "duration_seconds": {
+    "count": 271365.0,
+    "mean": 5.145207147891217,
+    "std": 1.913751956654529,
+    "min": 1.0,
+    "25%": 4.0,
+    "50%": 5.0,
+    "75%": 5.0,
+    "max": 51.232
+  },
+  "sample_rates": {
+    "32000": 271365
+  },
+  "channels": {
+    "1": 271365
+  },
+  "class_imbalance_max_to_min": 50010.0,
+  "top_classes": [
+    {
+      "label": "morepo2",
+      "common_name": "Morepork",
+      "scientific_name": "Ninox novaeseelandiae",
+      "clip_count": 50010,
+      "recording_count": 30460,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "nezbel1",
+      "common_name": "Bellbird",
+      "scientific_name": "Anthornis melanura",
+      "clip_count": 39242,
+      "recording_count": 10038,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "tomtit1",
+      "common_name": "Tomtit",
+      "scientific_name": "Petroica macrocephala",
+      "clip_count": 32420,
+      "recording_count": 9607,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "silver3",
+      "common_name": "Silvereye",
+      "scientific_name": "Zosterops lateralis",
+      "clip_count": 30163,
+      "recording_count": 9047,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "gryger1",
+      "common_name": "Grey Warbler",
+      "scientific_name": "Gerygone igata",
+      "clip_count": 19685,
+      "recording_count": 10723,
+      "median_duration_s": 4.0
+    },
+    {
+      "label": "eurbla",
+      "common_name": "Blackbird",
+      "scientific_name": "Turdus merula",
+      "clip_count": 12364,
+      "recording_count": 5506,
+      "median_duration_s": 4.0
+    },
+    {
+      "label": "tui1",
+      "common_name": "Tui",
+      "scientific_name": "Prosthemadera novaeseelandiae",
+      "clip_count": 11120,
+      "recording_count": 5175,
+      "median_duration_s": 4.0
+    },
+    {
+      "label": "nezkak1",
+      "common_name": "New Zealand Kaka",
+      "scientific_name": "Nestor meridionalis",
+      "clip_count": 10810,
+      "recording_count": 7480,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "comcha",
+      "common_name": "Chaffinch",
+      "scientific_name": "Fringilla coelebs",
+      "clip_count": 8803,
+      "recording_count": 2544,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "nezfan1",
+      "common_name": "Fantail",
+      "scientific_name": "Rhipidura fuliginosa",
+      "clip_count": 8588,
+      "recording_count": 5911,
+      "median_duration_s": 4.0
+    },
+    {
+      "label": "riflem1",
+      "common_name": "Rifleman",
+      "scientific_name": "Acanthisitta chloris",
+      "clip_count": 7845,
+      "recording_count": 2975,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "lotkoe1",
+      "common_name": "Long-tailed Cuckoo",
+      "scientific_name": "Urodynamis taitensis",
+      "clip_count": 6757,
+      "recording_count": 4990,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "weta",
+      "common_name": "Tree Weta",
+      "scientific_name": "Hemideina sp.",
+      "clip_count": 4210,
+      "recording_count": 3373,
+      "median_duration_s": 4.0
+    },
+    {
+      "label": "weka1",
+      "common_name": "Weka",
+      "scientific_name": "Gallirallus australis",
+      "clip_count": 2895,
+      "recording_count": 2538,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "kea1",
+      "common_name": "Kea",
+      "scientific_name": "Nestor notabilis",
+      "clip_count": 2561,
+      "recording_count": 2057,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "parake",
+      "common_name": "Parakeet",
+      "scientific_name": "Psittaciformes sp.",
+      "clip_count": 2422,
+      "recording_count": 1798,
+      "median_duration_s": 4.0
+    },
+    {
+      "label": "nezrob3",
+      "common_name": "South Island Robin",
+      "scientific_name": "Petroica australis",
+      "clip_count": 2367,
+      "recording_count": 258,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "nezrob2",
+      "common_name": "North Island Robin",
+      "scientific_name": "Petroica longipes",
+      "clip_count": 2118,
+      "recording_count": 240,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "sonthr1",
+      "common_name": "Song Thrush",
+      "scientific_name": "Turdus philomelos",
+      "clip_count": 2052,
+      "recording_count": 1075,
+      "median_duration_s": 5.0
+    },
+    {
+      "label": "sobkiw2",
+      "common_name": "Southern Brown Kiwi",
+      "scientific_name": "Apteryx australis",
+      "clip_count": 1497,
+      "recording_count": 1115,
+      "median_duration_s": 5.92
+    }
+  ],
+  "unreadable_examples": [],
+  "source_grouping": "Dataset collection plus filename stem after removing a trailing numeric crop index; all crops from a source stay in one split."
+}

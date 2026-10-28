@@ -1,0 +1,517 @@
+{
+  "dataset": "ollypowell/new-zealand-bird-sound",
+  "excluded_non_bird_labels": [
+    "weta"
+  ],
+  "device": "cuda",
+  "classes": [
+    {
+      "code": "ausmag2",
+      "common_name": "Australian Magpie",
+      "scientific_name": "Gymnorhina tibicen"
+    },
+    {
+      "code": "auspip3",
+      "common_name": "New Zealand Pipit",
+      "scientific_name": "Anthus novaeseelandiae"
+    },
+    {
+      "code": "cangoo",
+      "common_name": "Canada Goose",
+      "scientific_name": "Branta canadensis"
+    },
+    {
+      "code": "comcha",
+      "common_name": "Chaffinch",
+      "scientific_name": "Fringilla coelebs"
+    },
+    {
+      "code": "comred",
+      "common_name": "Redpoll",
+      "scientific_name": "Acanthis flammea"
+    },
+    {
+      "code": "dunnoc1",
+      "common_name": "Dunnock",
+      "scientific_name": "Prunella modularis"
+    },
+    {
+      "code": "eurbla",
+      "common_name": "Blackbird",
+      "scientific_name": "Turdus merula"
+    },
+    {
+      "code": "eurgre1",
+      "common_name": "Greenfinch",
+      "scientific_name": "Chloris chloris"
+    },
+    {
+      "code": "grskiw1",
+      "common_name": "Great Spotted Kiwi",
+      "scientific_name": "Apteryx haastii"
+    },
+    {
+      "code": "gryger1",
+      "common_name": "Grey Warbler",
+      "scientific_name": "Gerygone igata"
+    },
+    {
+      "code": "kea1",
+      "common_name": "Kea",
+      "scientific_name": "Nestor notabilis"
+    },
+    {
+      "code": "kelgul",
+      "common_name": "Southern Black-backed Gull",
+      "scientific_name": "Larus dominicanus"
+    },
+    {
+      "code": "liskiw1",
+      "common_name": "Little Spotted Kiwi",
+      "scientific_name": "Apteryx owenii"
+    },
+    {
+      "code": "lotkoe1",
+      "common_name": "Long-tailed Cuckoo",
+      "scientific_name": "Urodynamis taitensis"
+    },
+    {
+      "code": "maslap1",
+      "common_name": "Spur-winged Plover",
+      "scientific_name": "Vanellus miles"
+    },
+    {
+      "code": "morepo2",
+      "common_name": "Morepork",
+      "scientific_name": "Ninox novaeseelandiae"
+    },
+    {
+      "code": "nezbel1",
+      "common_name": "Bellbird",
+      "scientific_name": "Anthornis melanura"
+    },
+    {
+      "code": "nezfal1",
+      "common_name": "New Zealand Falcon",
+      "scientific_name": "Falco novaeseelandiae"
+    },
+    {
+      "code": "nezfan1",
+      "common_name": "Fantail",
+      "scientific_name": "Rhipidura fuliginosa"
+    },
+    {
+      "code": "nezkak1",
+      "common_name": "New Zealand Kaka",
+      "scientific_name": "Nestor meridionalis"
+    },
+    {
+      "code": "nezpig2",
+      "common_name": "Kereru",
+      "scientific_name": "Hemiphaga novaeseelandiae"
+    },
+    {
+      "code": "nezrob2",
+      "common_name": "North Island Robin",
+      "scientific_name": "Petroica longipes"
+    },
+    {
+      "code": "nezrob3",
+      "common_name": "South Island Robin",
+      "scientific_name": "Petroica australis"
+    },
+    {
+      "code": "nibkiw1",
+      "common_name": "North Island Brown Kiwi",
+      "scientific_name": "Apteryx mantelli"
+    },
+    {
+      "code": "parake",
+      "common_name": "Parakeet",
+      "scientific_name": "Psittaciformes sp."
+    },
+    {
+      "code": "parshe1",
+      "common_name": "Paradise Shelduck",
+      "scientific_name": "Tadorna variegata"
+    },
+    {
+      "code": "piesti1",
+      "common_name": "Pied Stilt",
+      "scientific_name": "Himantopus leucocephalus"
+    },
+    {
+      "code": "pipipi1",
+      "common_name": "Brown Creeper",
+      "scientific_name": "Mohoua novaeseelandiae"
+    },
+    {
+      "code": "purswa6",
+      "common_name": "Pukeko",
+      "scientific_name": "Porphyrio melanotus"
+    },
+    {
+      "code": "riflem1",
+      "common_name": "Rifleman",
+      "scientific_name": "Acanthisitta chloris"
+    },
+    {
+      "code": "sackin1",
+      "common_name": "New Zealand Kingfisher",
+      "scientific_name": "Todiramphus sanctus"
+    },
+    {
+      "code": "shbcuc1",
+      "common_name": "Shining Cuckoo",
+      "scientific_name": "Chrysococcyx lucidus"
+    },
+    {
+      "code": "silver3",
+      "common_name": "Silvereye",
+      "scientific_name": "Zosterops lateralis"
+    },
+    {
+      "code": "skylar",
+      "common_name": "Skylark",
+      "scientific_name": "Alauda arvensis"
+    },
+    {
+      "code": "sobkiw2",
+      "common_name": "Southern Brown Kiwi",
+      "scientific_name": "Apteryx australis"
+    },
+    {
+      "code": "sonthr1",
+      "common_name": "Song Thrush",
+      "scientific_name": "Turdus philomelos"
+    },
+    {
+      "code": "tomtit1",
+      "common_name": "Tomtit",
+      "scientific_name": "Petroica macrocephala"
+    },
+    {
+      "code": "tui1",
+      "common_name": "Tui",
+      "scientific_name": "Prosthemadera novaeseelandiae"
+    },
+    {
+      "code": "weka1",
+      "common_name": "Weka",
+      "scientific_name": "Gallirallus australis"
+    },
+    {
+      "code": "whiteh1",
+      "common_name": "Whitehead",
+      "scientific_name": "Mohoua albicilla"
+    },
+    {
+      "code": "yefpar3",
+      "common_name": "Yellow-crowned Parakeet",
+      "scientific_name": "Cyanoramphus auriceps"
+    },
+    {
+      "code": "yellow2",
+      "common_name": "Yellowhammer",
+      "scientific_name": "Emberiza citrinella"
+    }
+  ],
+  "samples": {
+    "total": 5438,
+    "train": 3264,
+    "validation": 1087,
+    "test": 1087
+  },
+  "source_recordings": {
+    "total": 4743,
+    "train": 2848,
+    "validation": 947,
+    "test": 948
+  },
+  "test_metrics": {
+    "cross_entropy_loss": 3.300287524603218,
+    "accuracy": 0.19963201471941122,
+    "balanced_accuracy": 0.21408789268215647,
+    "precision_macro": 0.20360299537906135,
+    "recall_macro": 0.21408789268215647,
+    "f1_macro": 0.18828677348060083,
+    "f1_weighted": 0.18360268323055967,
+    "top_3_accuracy": 0.36338546458141674,
+    "log_loss": 3.2960679194036833,
+    "matthews_correlation": 0.18013308927029176,
+    "cohen_kappa": 0.17932078248690053,
+    "majority_class_accuracy_baseline": 0.027598896044158234,
+    "balanced_accuracy_uniform_guess_baseline": 0.023809523809523808
+  },
+  "per_class_report": {
+    "Australian Magpie (ausmag2)": {
+      "precision": 0.2608695652173913,
+      "recall": 0.25,
+      "f1-score": 0.2553191489361702,
+      "support": 24.0
+    },
+    "New Zealand Pipit (auspip3)": {
+      "precision": 0.25,
+      "recall": 0.6,
+      "f1-score": 0.35294117647058826,
+      "support": 10.0
+    },
+    "Canada Goose (cangoo)": {
+      "precision": 0.15,
+      "recall": 0.3,
+      "f1-score": 0.2,
+      "support": 10.0
+    },
+    "Chaffinch (comcha)": {
+      "precision": 0.2,
+      "recall": 0.06666666666666667,
+      "f1-score": 0.1,
+      "support": 30.0
+    },
+    "Redpoll (comred)": {
+      "precision": 0.11764705882352941,
+      "recall": 0.13333333333333333,
+      "f1-score": 0.125,
+      "support": 30.0
+    },
+    "Dunnock (dunnoc1)": {
+      "precision": 0.5555555555555556,
+      "recall": 0.16666666666666666,
+      "f1-score": 0.2564102564102564,
+      "support": 30.0
+    },
+    "Blackbird (eurbla)": {
+      "precision": 0.058823529411764705,
+      "recall": 0.03333333333333333,
+      "f1-score": 0.0425531914893617,
+      "support": 30.0
+    },
+    "Greenfinch (eurgre1)": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 20.0
+    },
+    "Great Spotted Kiwi (grskiw1)": {
+      "precision": 0.20408163265306123,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.25316455696202533,
+      "support": 30.0
+    },
+    "Grey Warbler (gryger1)": {
+      "precision": 0.34146341463414637,
+      "recall": 0.4666666666666667,
+      "f1-score": 0.39436619718309857,
+      "support": 30.0
+    },
+    "Kea (kea1)": {
+      "precision": 0.2222222222222222,
+      "recall": 0.13333333333333333,
+      "f1-score": 0.16666666666666666,
+      "support": 30.0
+    },
+    "Southern Black-backed Gull (kelgul)": {
+      "precision": 0.18181818181818182,
+      "recall": 0.3076923076923077,
+      "f1-score": 0.22857142857142856,
+      "support": 13.0
+    },
+    "Little Spotted Kiwi (liskiw1)": {
+      "precision": 0.15,
+      "recall": 0.46153846153846156,
+      "f1-score": 0.22641509433962265,
+      "support": 13.0
+    },
+    "Long-tailed Cuckoo (lotkoe1)": {
+      "precision": 0.4166666666666667,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.5128205128205128,
+      "support": 30.0
+    },
+    "Spur-winged Plover (maslap1)": {
+      "precision": 0.5,
+      "recall": 0.2,
+      "f1-score": 0.2857142857142857,
+      "support": 30.0
+    },
+    "Morepork (morepo2)": {
+      "precision": 0.5185185185185185,
+      "recall": 0.4666666666666667,
+      "f1-score": 0.49122807017543857,
+      "support": 30.0
+    },
+    "Bellbird (nezbel1)": {
+      "precision": 0.21621621621621623,
+      "recall": 0.26666666666666666,
+      "f1-score": 0.23880597014925373,
+      "support": 30.0
+    },
+    "New Zealand Falcon (nezfal1)": {
+      "precision": 0.08571428571428572,
+      "recall": 0.1,
+      "f1-score": 0.09230769230769231,
+      "support": 30.0
+    },
+    "Fantail (nezfan1)": {
+      "precision": 0.16216216216216217,
+      "recall": 0.2,
+      "f1-score": 0.1791044776119403,
+      "support": 30.0
+    },
+    "New Zealand Kaka (nezkak1)": {
+      "precision": 0.12,
+      "recall": 0.2,
+      "f1-score": 0.15,
+      "support": 30.0
+    },
+    "Kereru (nezpig2)": {
+      "precision": 0.3,
+      "recall": 0.14285714285714285,
+      "f1-score": 0.1935483870967742,
+      "support": 21.0
+    },
+    "North Island Robin (nezrob2)": {
+      "precision": 0.16666666666666666,
+      "recall": 0.13333333333333333,
+      "f1-score": 0.14814814814814814,
+      "support": 30.0
+    },
+    "South Island Robin (nezrob3)": {
+      "precision": 0.2222222222222222,
+      "recall": 0.06666666666666667,
+      "f1-score": 0.10256410256410256,
+      "support": 30.0
+    },
+    "North Island Brown Kiwi (nibkiw1)": {
+      "precision": 0.12195121951219512,
+      "recall": 0.16666666666666666,
+      "f1-score": 0.14084507042253522,
+      "support": 30.0
+    },
+    "Parakeet (parake)": {
+      "precision": 0.1044776119402985,
+      "recall": 0.23333333333333334,
+      "f1-score": 0.14432989690721648,
+      "support": 30.0
+    },
+    "Paradise Shelduck (parshe1)": {
+      "precision": 0.14285714285714285,
+      "recall": 0.06666666666666667,
+      "f1-score": 0.09090909090909091,
+      "support": 15.0
+    },
+    "Pied Stilt (piesti1)": {
+      "precision": 0.2692307692307692,
+      "recall": 0.5833333333333334,
+      "f1-score": 0.3684210526315789,
+      "support": 12.0
+    },
+    "Brown Creeper (pipipi1)": {
+      "precision": 0.225,
+      "recall": 0.3,
+      "f1-score": 0.2571428571428571,
+      "support": 30.0
+    },
+    "Pukeko (purswa6)": {
+      "precision": 0.19402985074626866,
+      "recall": 0.43333333333333335,
+      "f1-score": 0.26804123711340205,
+      "support": 30.0
+    },
+    "Rifleman (riflem1)": {
+      "precision": 0.1111111111111111,
+      "recall": 0.03333333333333333,
+      "f1-score": 0.05128205128205128,
+      "support": 30.0
+    },
+    "New Zealand Kingfisher (sackin1)": {
+      "precision": 0.125,
+      "recall": 0.13333333333333333,
+      "f1-score": 0.12903225806451613,
+      "support": 30.0
+    },
+    "Shining Cuckoo (shbcuc1)": {
+      "precision": 0.1875,
+      "recall": 0.1,
+      "f1-score": 0.13043478260869565,
+      "support": 30.0
+    },
+    "Silvereye (silver3)": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 30.0
+    },
+    "Skylark (skylar)": {
+      "precision": 0.3125,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.3225806451612903,
+      "support": 15.0
+    },
+    "Southern Brown Kiwi (sobkiw2)": {
+      "precision": 0.16666666666666666,
+      "recall": 0.2,
+      "f1-score": 0.18181818181818182,
+      "support": 30.0
+    },
+    "Song Thrush (sonthr1)": {
+      "precision": 0.08,
+      "recall": 0.06666666666666667,
+      "f1-score": 0.07272727272727272,
+      "support": 30.0
+    },
+    "Tomtit (tomtit1)": {
+      "precision": 0.09090909090909091,
+      "recall": 0.03333333333333333,
+      "f1-score": 0.04878048780487805,
+      "support": 30.0
+    },
+    "Tui (tui1)": {
+      "precision": 0.4444444444444444,
+      "recall": 0.13333333333333333,
+      "f1-score": 0.20512820512820512,
+      "support": 30.0
+    },
+    "Weka (weka1)": {
+      "precision": 0.2,
+      "recall": 0.23333333333333334,
+      "f1-score": 0.2153846153846154,
+      "support": 30.0
+    },
+    "Whitehead (whiteh1)": {
+      "precision": 0.125,
+      "recall": 0.041666666666666664,
+      "f1-score": 0.0625,
+      "support": 24.0
+    },
+    "Yellow-crowned Parakeet (yefpar3)": {
+      "precision": 0.08333333333333333,
+      "recall": 0.08695652173913043,
+      "f1-score": 0.0851063829787234,
+      "support": 23.0
+    },
+    "Yellowhammer (yellow2)": {
+      "precision": 0.16666666666666666,
+      "recall": 0.11764705882352941,
+      "f1-score": 0.13793103448275862,
+      "support": 17.0
+    },
+    "accuracy": 0.19963201471941122,
+    "macro avg": {
+      "precision": 0.20360299537906135,
+      "recall": 0.21408789268215647,
+      "f1-score": 0.18828677348060083,
+      "support": 1087.0
+    },
+    "weighted avg": {
+      "precision": 0.20557234287616644,
+      "recall": 0.19963201471941122,
+      "f1-score": 0.18360268323055967,
+      "support": 1087.0
+    }
+  },
+  "best_validation_loss": 3.095361487407035,
+  "epochs_completed": 25,
+  "split_method": "5-fold StratifiedGroupKFold grouped by collection and source filename; fold 0 test, fold 1 validation, folds 2-4 train",
+  "seed": 42
+}
