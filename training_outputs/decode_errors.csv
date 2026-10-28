@@ -1,0 +1,11 @@
+file,error
+E:\CACOPHONY\19\521390-20200215-115500-170Darlington.m4a,"[mov,mp4,m4a,3gp,3g2,mj2 @ 000001a74923fa40] moov atom not found
+[in#0 @ 000001a74923f640] Error opening input: Invalid data found when processing input
+Error opening input file E:\CACOPHONY\19\521390-20200215-115500-170Darlington.m4a.
+Error opening input files: Invalid data found when processing input
+"
+E:\CACOPHONY\24\1613841-20100731-120000-golden-whistler.mp3,"[mp3 @ 0000015f0efafa40] Failed to find two consecutive MPEG audio frames.
+[in#0 @ 0000015f0efaf640] Error opening input: Invalid data found when processing input
+Error opening input file E:\CACOPHONY\24\1613841-20100731-120000-golden-whistler.mp3.
+Error opening input files: Invalid data found when processing input
+"

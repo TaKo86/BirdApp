@@ -1,0 +1,24 @@
+true_label,australasian bittern,banded dotterel,bellbird,black noddy,blackbird,crimson rosella,fantail,golden whistler,grey warbler,house sparrow,morepork,norfolk gerygone,norfolk golden whistler,norfolk parrot,norfolk robin,rooster,silvereye,slender-billed white-eye,song thrush,sooty tern,tui,whistler,white tern
+australasian bittern,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0
+banded dotterel,0,3,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,0
+bellbird,0,0,9,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,4,0,2,0,0
+black noddy,0,0,0,6,0,0,3,0,0,0,0,0,1,0,0,0,0,0,0,4,0,3,3
+blackbird,0,0,6,0,19,3,0,0,2,0,0,2,4,1,6,2,3,6,0,7,1,6,8
+crimson rosella,1,0,0,0,0,0,0,0,0,0,0,5,1,1,0,0,0,1,0,4,0,0,4
+fantail,0,0,0,2,9,4,72,2,0,0,3,2,0,2,5,0,2,4,0,9,4,8,5
+golden whistler,0,2,2,0,3,0,0,12,0,0,0,0,6,0,1,0,3,2,1,0,0,5,4
+grey warbler,1,0,1,0,0,0,0,0,14,0,0,0,0,0,0,0,1,0,3,0,0,0,0
+house sparrow,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,4,1,0,0,0,0,0
+morepork,0,0,1,0,0,0,0,1,0,1,59,0,0,0,1,0,3,0,0,2,0,0,0
+norfolk gerygone,0,0,0,2,4,5,1,0,0,0,0,20,3,3,5,2,2,2,1,1,0,3,9
+norfolk golden whistler,0,0,1,2,3,3,5,13,0,1,0,7,30,5,11,3,3,2,1,4,2,33,21
+norfolk parrot,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1
+norfolk robin,0,0,0,0,0,0,0,0,0,0,0,0,1,0,6,0,0,1,1,1,0,0,4
+rooster,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,33,0,0,0,2,0,1,0
+silvereye,0,0,3,0,2,1,0,0,3,0,0,1,2,0,1,1,7,1,2,0,0,2,1
+slender-billed white-eye,0,0,0,0,2,1,1,0,0,0,0,0,1,0,1,2,2,8,0,4,0,0,4
+song thrush,0,0,4,0,0,0,0,0,6,0,0,0,0,0,0,0,4,1,1,0,0,0,1
+sooty tern,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,2
+tui,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,2,0,0
+whistler,0,0,0,1,2,0,2,1,0,0,0,1,5,0,1,0,0,0,0,1,0,11,0
+white tern,0,0,0,2,1,1,1,4,0,0,0,3,3,2,3,1,0,9,0,4,0,0,26
