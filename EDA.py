@@ -22,6 +22,11 @@ import soundfile as sf
 DATASET = "ollypowell/new-zealand-bird-sound"
 AUDIO_EXTS = {".wav", ".mp3", ".flac", ".ogg", ".m4a"}
 OUT_DIR = Path("dataset_report")
+ENDANGERED_LABELS: set[str] = set()
+
+
+def count_endangered_crops(audio: pd.DataFrame, endangered_labels: set[str]) -> int:
+    return int(audio["label"].isin(endangered_labels).sum())
 
 
 def download() -> Path:
@@ -105,6 +110,13 @@ def main():
     print(f"\n== Classes: {len(counts)} ==")
     print(counts.to_string())
     print(f"\nImbalance (max/min): {counts.max() / counts.min():.1f}x")
+
+    if ENDANGERED_LABELS:
+        endangered_count = count_endangered_crops(good, ENDANGERED_LABELS)
+        print(f"\nEndangered sound crops: {endangered_count}")
+    else:
+        print("\nSet ENDANGERED_LABELS to the endangered species label codes "
+              "to count their readable crops.")
 
     good.drop(columns=["path"]).to_csv(OUT_DIR / "audio_index.csv", index=False)
 
