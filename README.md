@@ -5,6 +5,10 @@
 Requires [uv](https://docs.astral.sh/uv/). Python 3.11 is installed automatically
 
 ```bash
+pip install uv
+```
+
+```bash
 uv sync
 ```
 
@@ -34,3 +38,14 @@ Open `bird_pipeline.ipynb`, select the `.venv` interpreter and run all cells
 
 - DOC recordings: CC BY 4.0 (Department of Conservation, via Kaggle)
 - xeno-canto recordings: Creative Commons licence per recording (see `--xc-licences`)
+
+## Running the demo UI
+
+No dataset, trained model or API server is needed:
+
+```bash
+uv sync
+uv run streamlit run app/streamlit_app.py
+```
+
+Open the local URL printed by Streamlit (normally http://localhost:8501).
