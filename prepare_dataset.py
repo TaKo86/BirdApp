@@ -5,6 +5,7 @@
 Writes
     output/manifest_all.csv    every clip + QC metrics + drop_reason ("" = kept)
     output/manifest_clean.csv  clips that passed every check (input for make_spectrograms.py)
+    output/species_counts.csv  recordings species
     output/qc_report.txt       summary numbers for the report
 """
 import argparse
@@ -161,6 +162,11 @@ def report(df, clean, names):
     ]
     return "\n".join(lines)
 
+def species_counts(clean):
+    """Number of recordings species, most recordings first."""
+    keys = ["primary_label", "common_name", "scientific_name"]
+    counts = clean.groupby(keys, dropna=False).agg(recordings=("group", "nunique"), clips=("group", "size"))
+    return counts.reset_index().sort_values("recordings", ascending=False)
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -202,6 +208,7 @@ def main():
 
     df.to_csv(args.out / "manifest_all.csv", index=False)
     clean.to_csv(args.out / "manifest_clean.csv", index=False)
+    species_counts(clean).to_csv(args.out / "species_counts.csv", index=False)
     text = report(df, clean, names)
     (args.out / "qc_report.txt").write_text(text, encoding="utf-8")
     print(text[:1500])
