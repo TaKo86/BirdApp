@@ -91,6 +91,7 @@ def select_training_clips(
     min_recordings: int,
     max_clips_per_class: int,
     seed: int,
+    requested_labels: list[str] | None = None,
 ) -> tuple[list[dict[str, Any]], list[str], dict[str, dict[str, str]]]:
     if not index_path.is_file():
         raise FileNotFoundError(
@@ -110,13 +111,29 @@ def select_training_clips(
     support = frame.groupby("label").agg(
         clips=("label", "size"), recordings=("source_id", "nunique")
     )
-    labels = sorted(
+    eligible_labels = set(
         support.index[
             (support["clips"] >= min_clips)
             & (support["recordings"] >= min_recordings)
         ].tolist()
-    )
-    labels = [label for label in labels if label not in NON_BIRD_LABELS]
+    ) - NON_BIRD_LABELS
+    if requested_labels is not None:
+        missing_labels = sorted(set(requested_labels) - set(support.index))
+        unsupported_labels = sorted(set(requested_labels) - eligible_labels)
+        if missing_labels or unsupported_labels:
+            details = []
+            if missing_labels:
+                details.append(f"not found in the audio index: {missing_labels}")
+            if unsupported_labels:
+                details.append(
+                    "excluded or below the support thresholds "
+                    f"(min_clips={min_clips}, min_recordings={min_recordings}): "
+                    f"{unsupported_labels}"
+                )
+            raise ValueError("Requested class list contains labels " + "; ".join(details))
+        labels = sorted(set(requested_labels))
+    else:
+        labels = sorted(eligible_labels)
     if len(labels) < 2:
         raise ValueError(
             "Fewer than two species meet the training support criteria "
@@ -138,9 +155,32 @@ def select_training_clips(
             records = rows.to_dict(orient="records")
             one_per_recording.append(rng.choice(records))
         rng.shuffle(one_per_recording)
-        selected.extend(one_per_recording[:max_clips_per_class])
+        selected.extend(
+            one_per_recording[:max_clips_per_class]
+            if max_clips_per_class
+            else one_per_recording
+        )
 
     return selected, labels, class_names
+
+
+def load_class_list(path: Path) -> list[str]:
+    if not path.is_file():
+        raise FileNotFoundError(f"Class-list CSV does not exist: {path}")
+    frame = pd.read_csv(path)
+    label_column = next(
+        (column for column in frame.columns if str(column).strip().casefold() == "label"),
+        None,
+    )
+    if label_column is None:
+        raise ValueError(f"{path} must contain a 'Label' column.")
+    labels = frame[label_column].dropna().astype(str).str.strip().str.casefold()
+    if labels.empty or labels.eq("").any():
+        raise ValueError(f"{path} must contain at least one non-empty label.")
+    if labels.duplicated().any():
+        duplicates = sorted(labels[labels.duplicated(keep=False)].unique().tolist())
+        raise ValueError(f"{path} contains duplicate labels: {duplicates}")
+    return labels.tolist()
 
 
 def extract_features(
@@ -148,9 +188,10 @@ def extract_features(
     labels: list[str],
     dataset_root: Path,
     output_dir: Path,
+    feature_cache_path: Path,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, list[dict[str, str]]]:
     label_to_index = {label: index for index, label in enumerate(labels)}
-    features: list[np.ndarray] = []
+    feature_store: np.memmap | None = None
     targets: list[int] = []
     groups: list[str] = []
     errors: list[dict[str, str]] = []
@@ -164,7 +205,15 @@ def extract_features(
             errors.append({"file": str(relative), "error": str(exc)[:500]})
             continue
         feature = log_mel_spectrogram(fixed_length_crop(audio))
-        features.append(feature)
+        if feature_store is None:
+            feature_cache_path.parent.mkdir(parents=True, exist_ok=True)
+            feature_store = np.memmap(
+                feature_cache_path,
+                dtype=np.float32,
+                mode="w+",
+                shape=(len(clips), *feature.shape),
+            )
+        feature_store[len(targets)] = feature
         targets.append(label_to_index[str(row["label"])])
         groups.append(source_recording_id(str(row["rel"])))
         if index % 500 == 0 or index == len(clips):
@@ -176,10 +225,12 @@ def extract_features(
     )
     if errors:
         print(f"Audio decode errors: {len(errors)} (details in decode_errors.csv)")
-    if not features:
+    if feature_store is None:
         raise RuntimeError("No audio features were extracted.")
+    feature_store.flush()
+    feature_view = feature_store[: len(targets)]
     return (
-        np.stack(features).astype(np.float32, copy=False),
+        feature_view,
         np.asarray(targets, dtype=np.int64),
         np.asarray(groups, dtype=str),
         errors,
@@ -557,10 +608,23 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--min-clips", type=int, default=100)
     parser.add_argument("--min-recordings", type=int, default=50)
-    parser.add_argument("--max-clips-per-class", type=int, default=150)
+    parser.add_argument(
+        "--max-clips-per-class",
+        type=int,
+        default=150,
+        help="Maximum distinct recordings per species; use 0 for all eligible recordings.",
+    )
+    parser.add_argument(
+        "--class-list",
+        type=Path,
+        default=None,
+        help="Optional CSV with a Label column to restrict the species classes.",
+    )
     args = parser.parse_args()
-    if min(args.epochs, args.batch_size, args.min_clips, args.max_clips_per_class) < 1:
-        parser.error("epochs, batch size, and clip limits must be positive.")
+    if min(args.epochs, args.batch_size, args.min_clips) < 1:
+        parser.error("epochs, batch size, and minimum clip support must be positive.")
+    if args.max_clips_per_class < 0:
+        parser.error("--max-clips-per-class must be non-negative.")
     if args.min_recordings < SPLITS:
         parser.error(f"--min-recordings must be at least {SPLITS}.")
     dataset_root = (
@@ -570,6 +634,11 @@ def main() -> None:
     )
     index_path = args.index_csv.expanduser().resolve()
     output_dir = args.output_dir.expanduser().resolve()
+    requested_labels = (
+        load_class_list(args.class_list.expanduser().resolve())
+        if args.class_list
+        else None
+    )
     clips, labels, class_names = select_training_clips(
         index_path,
         load_species_names(dataset_root),
@@ -577,37 +646,53 @@ def main() -> None:
         args.min_recordings,
         args.max_clips_per_class,
         SEED,
+        requested_labels,
+    )
+    sample_limit = (
+        "all eligible source recordings"
+        if args.max_clips_per_class == 0
+        else f"maximum {args.max_clips_per_class} recordings per species"
     )
     print(
         f"Selected {len(clips):,} clips across {len(labels)} species "
         f"(at least {args.min_clips} clips and {args.min_recordings} source recordings; "
-        f"maximum {args.max_clips_per_class} clips per species)."
+        f"{sample_limit})."
     )
-    features, targets, groups, errors = extract_features(
-        clips, labels, dataset_root, output_dir
-    )
-    supported = sorted(set(targets.tolist()))
-    if len(supported) != len(labels):
-        labels = [labels[index] for index in supported]
-        class_names = {label: class_names[label] for label in labels}
-        remap = {old: new for new, old in enumerate(supported)}
-        targets = np.asarray([remap[int(value)] for value in targets], dtype=np.int64)
-        print(f"Some classes had no decodable files; retained {len(labels)} classes.")
-    print(
-        f"Final data: {len(targets):,} clips, {len(labels)} classes, "
-        f"{len(np.unique(groups)):,} source recordings."
-    )
-    train_model(
-        features,
-        targets,
-        groups,
-        labels,
-        class_names,
-        output_dir,
-        args.epochs,
-        args.batch_size,
-    )
-    print(f"Skipped audio files due to decoding errors: {len(errors)}")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    feature_cache_path = output_dir / ".training_features.dat"
+    features: np.ndarray | None = None
+    try:
+        features, targets, groups, errors = extract_features(
+            clips, labels, dataset_root, output_dir, feature_cache_path
+        )
+        supported = sorted(set(targets.tolist()))
+        if len(supported) != len(labels):
+            labels = [labels[index] for index in supported]
+            class_names = {label: class_names[label] for label in labels}
+            remap = {old: new for new, old in enumerate(supported)}
+            targets = np.asarray([remap[int(value)] for value in targets], dtype=np.int64)
+            print(f"Some classes had no decodable files; retained {len(labels)} classes.")
+        print(
+            f"Final data: {len(targets):,} clips, {len(labels)} classes, "
+            f"{len(np.unique(groups)):,} source recordings."
+        )
+        train_model(
+            features,
+            targets,
+            groups,
+            labels,
+            class_names,
+            output_dir,
+            args.epochs,
+            args.batch_size,
+        )
+        print(f"Skipped audio files due to decoding errors: {len(errors)}")
+    finally:
+        if isinstance(features, np.memmap):
+            features.flush()
+            features._mmap.close()
+        if feature_cache_path.exists():
+            feature_cache_path.unlink()
 
 
 if __name__ == "__main__":

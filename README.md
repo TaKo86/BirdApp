@@ -22,3 +22,8 @@ metrics, and confusion matrices to `olly_training_outputs/`.
 See [OLLY_TRAINING_RESULTS.md](./OLLY_TRAINING_RESULTS.md) for the visual
 results and [OLLY_CNN_TRAINING_NOTES.md](./OLLY_CNN_TRAINING_NOTES.md) for
 methodology and caveats.
+
+An experimental acoustic-trait routed pipeline is available via
+`python train_staged_classifier.py`. See
+[STAGED_CLASSIFICATION.md](./STAGED_CLASSIFICATION.md) for its design,
+evaluation protocol, and limitations.

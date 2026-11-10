@@ -93,6 +93,73 @@ explicitly held-out collection/site or external recordings.
 `metrics.json` includes a majority-class accuracy reference and uniform-guess
 balanced-accuracy reference. These are baselines, not other trained models.
 
+## Optional class-list experiment
+
+`train_cnn.py` accepts `--class-list <csv>` to restrict training to labels in a
+CSV's `Label` column. For example, `class_list.csv` selects eight species. Its
+recording/window count columns are descriptive only: because it contains no
+recording IDs, the trainer cannot reproduce those exact partitions. It samples
+the requested labels from the indexed dataset and creates fresh source-grouped
+train, validation, and test splits.
+
+The eight-species experiment used a cap of 500 recordings per class and
+processed 4,000 clips (2,400 train, 800 validation, 800 test) from 3,759
+inferred sources. Its test accuracy was 45.4%, macro F1 was 43.8%, and top-3
+accuracy was 72.9%, compared with 12.5% for both the test majority-class and
+uniform balanced-accuracy references. These scores are not a direct
+like-for-like comparison with the 42-class run: the number of candidate
+species, selected clips, and resulting split differ. Results are saved in
+`class_list_training_outputs/`.
+
+The CNN run does not train on all 271,365 indexed files. The 42-class run
+selected at most 150 clips per class (5,438 total); the class-list run selected
+at most 500 per class (4,000 total). Audio is decoded and converted to
+log-mel features once before training, then the small CNN trains for up to 25
+epochs on the precomputed features using CUDA when available. This smaller
+sample and GPU training explain why these runs take minutes rather than
+processing the entire dataset. Runtime for a separate earlier experiment
+cannot be compared without its sample counts, preprocessing, hardware, and
+logs.
+
+### All available recordings for the eight listed species
+
+The follow-up run removed the per-class cap for `class_list.csv` by passing
+`--max-clips-per-class 0`. It selected 76,946 clips across the eight listed
+species, representing 47,520 unique inferred source groups. The grouped split
+contained 46,167 training clips, 15,390 validation clips, and 15,389 test
+clips. Training used CUDA on an NVIDIA GeForce GTX 1070, stopped after 24
+epochs, selected the epoch-18 checkpoint using validation loss, and skipped
+no audio files.
+
+| Test metric | Result |
+|---|---:|
+| Accuracy | 69.3% |
+| Balanced accuracy | 59.9% |
+| Macro precision | 57.9% |
+| Macro recall | 59.9% |
+| Macro F1 | 57.8% |
+| Weighted F1 | 68.7% |
+| Top-3 accuracy | 90.7% |
+| Cross-entropy loss | 0.924 |
+| Majority-class accuracy reference | 39.6% |
+| Uniform-guess balanced-accuracy reference | 12.5% |
+
+These are encouraging results for this eight-species task, not a direct
+like-for-like comparison with the 500-per-species experiment: the full-data
+test split is much larger and reflects the natural class imbalance, while the
+smaller run's test split had equal support per species. Macro F1 and balanced
+accuracy are therefore important alongside accuracy. The report, checkpoint,
+per-class scores, plots, and confusion matrices are in
+`class_list_all_data_outputs/`.
+
+The selected log-mel features were stored in a temporary disk-backed cache
+instead of being accumulated in RAM. The cache was removed after evaluation;
+only the model and reports remain. To reproduce the all-recordings run:
+
+```powershell
+python train_cnn.py --class-list class_list.csv --max-clips-per-class 0 --output-dir class_list_all_data_outputs
+```
+
 ## Reproduce
 
 Install dependencies. For GPU training, use PyTorch and TorchAudio builds
@@ -102,6 +169,12 @@ compatible with the machine's CUDA setup:
 python -m pip install -r requirements.txt
 python EDA.py
 python train_cnn.py
+```
+
+To train only the classes in a CSV and save separate outputs:
+
+```powershell
+python train_cnn.py --class-list class_list.csv --max-clips-per-class 500 --output-dir class_list_training_outputs
 ```
 
 KaggleHub uses its local cache when available; otherwise it may require

@@ -1,0 +1,9 @@
+﻿Label,Species,Training recordings,Validation recordings,Test recordings,Training windows,Validation windows,Test windows
+morepo2,Morepork,406,49,39,432,50,42
+nezbel1,Bellbird,378,43,56,402,48,63
+tui1,Tui,350,51,43,430,58,48
+nezfan1,Fantail,391,39,47,428,43,48
+tomtit1,Tomtit,372,60,47,488,67,60
+gryger1,Grey Warbler,389,49,46,425,53,47
+kea1,Kea,359,56,49,441,63,63
+riflem1,Rifleman,321,35,47,425,42,70

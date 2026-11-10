@@ -1,0 +1,16 @@
+Label,Species,Training recordings,Validation recordings,Test recordings,Training windows,Validation windows,Test windows
+comcha,Chaffinch,490,532,508,1760,1761,1761
+eurbla,Blackbird,1102,1092,1103,2473,2473,2473
+gryger1,Grey Warbler,2115,2161,2152,3937,3937,3937
+kea1,Kea,419,402,412,512,512,512
+lotkoe1,Long-tailed Cuckoo,1005,1004,996,1351,1352,1351
+morepo2,Morepork,6088,6095,6094,10002,10002,10002
+nezbel1,Bellbird,2007,1995,2010,7849,7848,7848
+nezfan1,Fantail,1162,1200,1193,1717,1718,1718
+nezkak1,New Zealand Kaka,1483,1501,1511,2162,2162,2162
+parake,Parakeet,371,359,358,485,485,484
+riflem1,Rifleman,592,596,583,1569,1569,1569
+silver3,Silvereye,1837,1803,1808,6033,6033,6032
+tomtit1,Tomtit,1934,1914,1934,6484,6484,6484
+tui1,Tui,1033,1036,1026,2224,2224,2224
+weka1,Weka,508,510,504,579,579,579

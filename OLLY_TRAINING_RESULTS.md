@@ -46,19 +46,61 @@ many species. Per-class scores and support are important context, and these
 metrics do not establish generalization to new recordists, locations, or
 collection conditions.
 
+## Eight-species experiment using all available recordings
+
+The eight labels in [`class_list.csv`](./class_list.csv) were also trained
+with no per-species recording cap. This selected 76,946 clips from 47,520
+inferred source groups. The held-out test split contains 15,389 clips from
+9,515 source groups; train and validation contain 46,167 and 15,390 clips.
+This run used CUDA on an NVIDIA GeForce GTX 1070 and completed 24 epochs
+before early stopping; the best-validation-loss checkpoint was from epoch 18.
+No selected audio files failed to decode.
+
+| Metric | Held-out result |
+|---|---:|
+| Accuracy | 69.3% |
+| Balanced accuracy | 59.9% |
+| Macro precision | 57.9% |
+| Macro recall | 59.9% |
+| Macro F1 | 57.8% |
+| Weighted F1 | 68.7% |
+| Top-3 accuracy | 90.7% |
+| Cross-entropy loss | 0.924 |
+| Majority-class accuracy reference | 39.6% |
+| Uniform-guess balanced-accuracy reference | 12.5% |
+
+This is a promising improvement for the eight-species scope, but it is not a
+controlled comparison to the 500-per-species run: the latter used an equal
+class sample and a different grouped test split. The all-recordings test
+distribution is imbalanced, so balanced accuracy and macro F1 should be
+considered along with top-1 accuracy. The details and limitations are in
+[`OLLY_CNN_TRAINING_NOTES.md`](./OLLY_CNN_TRAINING_NOTES.md).
+
 ## Plots
 
-### Training and validation metrics
+### Original 42-class run: training and validation metrics
 
 ![Cross-entropy, accuracy, balanced accuracy, and macro F1 by epoch](./olly_training_outputs/training_metric_curves.png)
 
-### Confusion matrix (raw counts)
+### Eight-class all-recordings run: training and validation metrics
+
+![All-recordings eight-species CNN training metrics](./class_list_all_data_outputs/training_metric_curves.png)
+
+### Original 42-class run: confusion matrix (raw counts)
 
 ![Held-out confusion matrix with raw counts](./olly_training_outputs/test_confusion_matrix.png)
 
-### Confusion matrix (row-normalized)
+### Eight-class all-recordings run: confusion matrix (raw counts)
+
+![All-recordings eight-species confusion matrix](./class_list_all_data_outputs/test_confusion_matrix.png)
+
+### Original 42-class run: confusion matrix (row-normalized)
 
 ![Held-out confusion matrix normalized by true species](./olly_training_outputs/test_confusion_matrix_normalized.png)
+
+### Eight-class all-recordings run: confusion matrix (row-normalized)
+
+![All-recordings eight-species normalized confusion matrix](./class_list_all_data_outputs/test_confusion_matrix_normalized.png)
 
 ## Output files
 
@@ -77,6 +119,10 @@ collection conditions.
   — numeric confusion matrix files.
 - [`decode_errors.csv`](./olly_training_outputs/decode_errors.csv) — files
   skipped because of decoding errors; none occurred in this run.
+
+The eight-species all-recordings checkpoint, metrics, per-class results, and
+plots are in [`class_list_all_data_outputs/`](./class_list_all_data_outputs/).
+The temporary spectrogram cache was removed after training.
 
 EDA tables and charts are in [`dataset_report/`](./dataset_report/). The
 training decisions, label filter, and evaluation limitations are described in

@@ -1,0 +1,31 @@
+# Python bytecode and tooling caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
+# Local Python environments
+.venv/
+venv/
+env/
+
+# Temporary feature cache
+.training_features.dat
+**/.training_features.dat
+
+# Generated model checkpoints and evaluation artifacts
+olly_training_outputs/
+class_list_training_outputs/
+class_list_all_data_outputs/
+staged_model_outputs/
+
+# Local dataset directories
+data/
+datasets/
+
+# Editor and operating-system files
+.vscode/
+.DS_Store
+Thumbs.db
