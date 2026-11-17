@@ -75,6 +75,9 @@ docs/_build/
 .pybuilder/
 target/
 
+# Tests
+tests/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -183,3 +186,40 @@ cython_debug/
 output/
 DOC_*/
 *.zip
+
+# local environments and caches
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# downloaded datasets and audio
+DOC_*/
+*.zip
+*.wav
+*.mp3
+*.m4a
+*.ogg
+*.flac
+
+# generated training outputs and feature caches
+output/
+*.npy
+*.npz
+*.dat
+
+# trained model files
+*.joblib
+*.pt
+*.pth
+*.keras
+*.h5
+*.onnx
+
+# local secrets
+.env
+.streamlit/secrets.toml
+kaggle.json
+
+# small report snapshots are committed under training_output/ instead
