@@ -34,6 +34,12 @@ dependencies = [
     { name = "tqdm" },
 ]
 
+[package.dev-dependencies]
+training = [
+    { name = "joblib" },
+    { name = "scikit-learn" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "av", specifier = ">=18.1.0" },
@@ -47,6 +53,12 @@ requires-dist = [
     { name = "soundfile", specifier = ">=0.14.0" },
     { name = "streamlit", specifier = ">=1.66.1" },
     { name = "tqdm", specifier = ">=4.70.1" },
+]
+
+[package.metadata.requires-dev]
+training = [
+    { name = "joblib", specifier = ">=1.6.0" },
+    { name = "scikit-learn", specifier = ">=1.9.1" },
 ]
 
 [[package]]

@@ -15,3 +15,9 @@ dependencies = [
     "streamlit>=1.66.1",
     "tqdm>=4.70.1",
 ]
+
+[dependency-groups]
+training = [
+    "joblib>=1.6.0",
+    "scikit-learn>=1.9.1",
+]
